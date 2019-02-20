@@ -118,7 +118,3 @@ function completeTask(taskName) {
         }
     }
 }
-
-function changeBackgroundColor(taskID) {
-    taskID.style.backgroundColor = 'green';
-}
