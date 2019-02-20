@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="css/style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    </head>
+    <body onload="fetchTask()">
+        
+        <div class="container">
+
+            <div class="box">
+                
+                <header class="title">Todo <img src="img/checkmark.png" /> <span class="text-secondary">App</span></header>
+
+                <form id="myForm">
+                    <input id="task-enter" type="text" placeholder="Enter Task Here..." />
+
+                    <button class="btn-submit" type="submit">Submit</button>
+                </from>
+                
+            </div>
+
+            <div class="task-container">
+                <header class="text-secondary title">Task</header>
+                <div id="tasksResults">
+                    <!--Results goes here-->
+                </div>
+
+            </div>
+            
+        </div>
+
+        <script
+        src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>
