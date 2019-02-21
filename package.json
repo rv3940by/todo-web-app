@@ -1,0 +1,23 @@
+{
+  "name": "todo-app",
+  "version": "1.0.0",
+  "description": "Todo Web Application",
+  "main": "index.js",
+  "homepage": "https://rv3940by.github.io/todo-app",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rv3940by/todo-web-app.git"
+  },
+  "author": "Leng Yang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rv3940by/todo-web-app/issues"
+  },
+  "dependencies": {
+    "gh-pages": "^2.0.1"
+  }
+}
