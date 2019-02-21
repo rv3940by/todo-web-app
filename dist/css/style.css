@@ -128,7 +128,7 @@ button:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 60rem;
+    width: 90%;
     padding-bottom: 2vh;
     border-radius: 5px;
     background: var(--medium-dark-background);
@@ -144,10 +144,10 @@ button:hover {
     background: var(--dark-background);
     box-shadow: 0 0 5px (--primary-dark);
     border-radius: 5px;
-    width: 55rem;
+    width: 90%;
     display: grid;
     justify-items: center;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-gap: 0.5rem;
 }
 
@@ -177,4 +177,45 @@ button:hover {
     background: var(--btn-green-color);
     cursor: pointer;
     border: none;
+}
+
+@media(max-width: 770px) {
+    .box {
+        width: 50%;
+    }
+
+    form #task-enter {
+        width: 100%;
+    }
+
+    .task-container {
+        width: 80%; 
+    }
+
+    .task-container #tasksResults {
+        width: 88%;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 1rem;
+    }
+}
+
+@media(max-width: 524px) {
+
+    .box {
+        width: 90%;
+    }
+
+    .task-container {
+        width: 90%;
+    }
+
+    form #task-enter {
+        width: 100%;
+    }
+
+    .task-container #tasksResults {
+        width: 80%;
+        grid-template-columns: 1fr;
+        grid-gap: 1rem;
+    }
 }
