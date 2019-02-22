@@ -8,7 +8,8 @@
     --medium-dark-background: #555;
     --btn-green-color: #5dd55d;
     --btn-red-color: #ff4d4d;
-    --btn-blue-color: #66b3ff;
+    --btn-blue-color: #00cc99;
+    --btn-update: #ffd633;
 }
 
 html, body {
@@ -113,8 +114,12 @@ button:hover {
     border: none;
     margin-top: 3vh;
     border-radius: 5px;
-    padding: 1rem 2rem;
+    padding: 0.8rem 2.5rem;
     font-size: 1rem;
+    color: #fff;
+    letter-spacing: 5px;
+    text-shadow: 2px 2px 3px #000;
+    text-transform: uppercase;
     cursor: pointer;
 }
 
@@ -139,7 +144,7 @@ button:hover {
 }
 
 .task-container #tasksResults {
-    margin-top: 1vh;
+    margin-top: 3vh;
     padding: 1rem 1rem;
     background: var(--dark-background);
     box-shadow: 0 0 5px (--primary-dark);
@@ -161,19 +166,47 @@ button:hover {
     text-transform: capitalize;
 }
 
-.task-container #tasksResults .task #delete-btn {
+.task-container #tasksResults .complete {
+    background: var(--btn-green-color);
+}
+
+.task-container #tasksResults .complete h3 {
+    text-decoration: line-through;
+}
+
+.task-container #tasksResults .complete #complete-btn {
+    background: #fff;
+    padding: 0.5rem 1.8rem;
+}
+
+.task-container #tasksResults .task .btn-holder {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.task-container #tasksResults .task .btn-holder button {
     padding: 0.5rem 1rem;
-    border-radius: 5px;
     font-size: 0.8rem;
+}
+
+.task-container #tasksResults .task #delete-btn {
+    padding: 0.5rem 1.3rem;
+    border-radius: 5px;
     background: var(--btn-red-color);
     cursor: pointer;
     border: none;
 }
 
-.task-container #tasksResults .task #complete-btn {
-    padding: 0.5rem 1rem;
+.task-container #tasksResults .task #update-btn {
+    background: var(--btn-update);
+    padding: 0.5rem 1.5rem;
     border-radius: 5px;
-    font-size: 0.8rem;
+    cursor: pointer;
+    border: none;
+}
+
+.task-container #tasksResults .task #complete-btn {
+    border-radius: 5px;
     background: var(--btn-green-color);
     cursor: pointer;
     border: none;
@@ -202,11 +235,11 @@ button:hover {
 @media(max-width: 524px) {
 
     .box {
-        width: 90%;
+        width: 70%;
     }
 
     .task-container {
-        width: 90%;
+        width: 95%;
     }
 
     form #task-enter {

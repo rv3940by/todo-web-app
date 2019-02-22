@@ -10,7 +10,8 @@ function saveTask(e) {
     }
 
     var task = {
-        name: taskName
+        name: taskName,
+        complete: false
     }
 
     //  Test if tasks is null
@@ -70,14 +71,23 @@ function fetchTask() {
 
     for (var i = 0; i < tasks.length; i++) {
         var taskName = tasks[i].name;
-        tasksResults.innerHTML += '<div class="task">' +
-                                    '<h3 id="task-text">'+taskName+'</h3>' +
-                                    '<div class="btn-holder"> ' +
-                                        '<button onclick="removeTask(\''+taskName+'\')" id="delete-btn">Remove</button>' +
-                                        '<button onclick="completeTask(\''+taskName+'\')" id="complete-btn">Complete</button>' +
-                                    '</div>' +
-                                  '</div>'
-                                  ;
+        if (tasks[i].complete == true){
+            tasksResults.innerHTML +=   '<div class="task complete">' +
+                                            '<h3 id="task-text">'+taskName+'</h3>' +
+                                            '<div class="btn-holder"> ' +
+                                                '<button style="background-color: #fff;" onclick="completeTask(\''+taskName+'\')" id="complete-btn">undo</button>' +    '<button onclick="updateTask(\''+taskName+'\')" class="update-btn" id="update-btn">update</button>' +     '<button onclick="removeTask(\''+taskName+'\')" id="delete-btn">Remove</button>' +
+                                            '</div>' +
+                                        '</div>'
+                                        ;            
+        } else {
+            tasksResults.innerHTML +=   '<div class="task">' +
+                                            '<h3 id="task-text">'+taskName+'</h3>' +
+                                            '<div class="btn-holder"> ' +
+                                                '<button onclick="completeTask(\''+taskName+'\')" id="complete-btn">complete</button>' +    '<button onclick="updateTask(\''+taskName+'\')" class="update-btn" id="update-btn">update</button>' +     '<button onclick="removeTask(\''+taskName+'\')" id="delete-btn">Remove</button>' +
+                                            '</div>' +
+                                        '</div>'
+                                        ;
+        }
     }
 }
 
@@ -93,28 +103,62 @@ function validateForm(taskName) {
 
 //  Complete Task Funciton
 function completeTask(taskName) {
+    //  Get tasks from localStorage
+    var tasks = JSON.parse(localStorage.getItem('tasks'));
+
     var x = document.querySelectorAll('.task');
     
     for (var i = 0; i < x.length; i++) {
         var target = x[i].firstChild.textContent;
-        var bgColor = x[i].style.backgroundColor;
-
         if (taskName == target) {
             //  if background does not equal to green
-            if (bgColor != 'green') {
-                x[i].firstChild.style.textDecoration = 'line-through';
-                x[i].style.backgroundColor = 'green';
-                x[i].lastElementChild.lastElementChild.style.backgroundColor = '#fff';
-                x[i].lastElementChild.lastElementChild.textContent = 'undo';
-            } 
-            //  If background is already green
-            else {
-                x[i].firstChild.style.textDecoration = 'none';
-                x[i].style.backgroundColor = '#fff';
-                x[i].lastElementChild.lastElementChild.style.backgroundColor = '#5dd55d';
-                x[i].lastElementChild.lastElementChild.textContent = 'complete';
-            }
-
+                for (var j = 0; j < tasks.length; j++){
+                    if (tasks[j].name == taskName) {
+                        if (tasks[j].complete == false) {
+                            tasks[j].complete = true;
+                        }
+                        //  If background is already green
+                        else {
+                            tasks[j].complete = false;
+                        }                          
+                    }             
+                }
         }
     }
+    // Re-set back to localStorage
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+
+    //  Re-fetch tasks
+    fetchTask();    
+}
+
+// Update function
+function updateTask(tskName) {
+    //  Get tasks from localStorage
+    var tasks = JSON.parse(localStorage.getItem('tasks'));
+
+    var promptVal = prompt('Enter your new task here');
+
+    if (promptVal == null || promptVal == "") {
+        alert('Please enter a new value before update.')
+    } else {
+        // Get the sibling of target parent
+        var text = tskName;
+        if (confirm('Do you wish to update this value?')) {
+            for (var i = 0; i < tasks.length; i++) {
+                if (tasks[i].name == tskName) {
+                    tasks[i].name = promptVal;
+                }
+            }        
+        } else {
+            //  Don't do anything
+            return false;
+        }
+    }
+    
+    // Re-set back to localStorage
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+
+    //  Re-fetch tasks
+    fetchTask();
 }
