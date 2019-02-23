@@ -19,7 +19,6 @@
   },
   "homepage": "https://rv3940by.github.io/todo-web-app",
   "dependencies": {
-    "gh-pages": "^2.0.1",
-    "node": "^11.10.0"
+    "gh-pages": "^2.0.1"
   }
 }
